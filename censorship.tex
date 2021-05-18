@@ -1,0 +1,38 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+\documentclass{stust-thesis}
+\usepackage{config}
+
+%--------Please enter your information for the thesis--------%
+\input{information}
+%--------Please enter your information for the thesis--------%
+
+\begin{document}
+    \deactivateBG%
+    \pagenumbering{gobble} % Remove pagenumber
+    \begin{center}
+        \includegraphics[width=.15\textwidth]{logo/STUST_LOGO_m.png}\\
+        \huge \textcolor{purple}{\textbf{\universityCHT\thinspace\degreeCHT 論文}}\\
+        \vspace{\baselineskip}
+        \LARGE
+        \textbf{\titleCHT}\\
+        \vspace{\baselineskip}
+        \begin{flushleft}
+            研究生：\authorCHT\\
+            \vspace{\baselineskip}
+            本論文業經審查及口試合格特此證明\\
+            \vspace{\baselineskip}
+            論文考試委員
+            \vfill
+                \begin{tabular}{cl}
+                    指導教授 & \advisorCHT\\
+                    所 \hfill 長 & \directorCHT%
+                \end{tabular}
+        \end{flushleft}
+        \vfill
+        \large
+        \makebox[.8\textwidth][s]{中 華 民 國\yearCHT 年\monthCHT 月\dayCHT 日}
+    \end{center}
+\end{document}

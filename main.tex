@@ -1,0 +1,51 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+\documentclass{stust-thesis}
+\usepackage{config}
+
+%--------Please enter your information for the thesis--------%
+\input{information}
+%--------Please enter your information for the thesis--------%
+
+\begin{document}
+    \frontmatter
+    % 停用浮水印
+    \deactivateBG%
+    % 封面頁
+    \makecover%
+    % 空白頁
+    \emptypage%
+    % 書名頁
+    \maketitle
+    % 口試委員審定書
+    \includepdf[pages=-]{censorship.pdf}
+    % 啟用浮水印
+    \activateBG%
+    % 摘要
+    \include{./chapters/abstract}
+    % 誌謝
+    \include{./chapters/acknowledgements}
+    % 目錄
+    \tableofcontents
+    % 表目錄
+    \listoftables
+    % 圖目錄
+    \listoffigures
+    % 程式碼一覽 
+%    \lstlistoflistings
+    % 本文
+    \mainmatter%
+    \include{./chapters/introduction}
+    % -------------- %
+    \cleardoublepage%
+    \phantomsection%
+    % -------------- %
+    % 參考文獻
+    \bibliography{references}
+    % 附錄 
+    \include{./chapters/appendix}
+    % 符號彙編
+    \include{./chapters/symbols}
+\end{document}

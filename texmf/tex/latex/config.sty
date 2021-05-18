@@ -1,0 +1,250 @@
+% Configurations
+
+%% Indent
+\usepackage{indentfirst} % Every line first will be indented
+\setlength{\parindent}{2em}
+\setlength{\parskip}{.2em}
+
+%% Fonts
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{mathptmx}
+\setmainfont{Times New Roman}
+\setCJKmainfont[AutoFakeBold=2,AutoFakeSlant=.2]{TW-Kai-98_1} % 主字體：全字庫正楷體
+% Reference: https://data.gov.tw/dataset/5961
+\setCJKmonofont[AutoFakeBold=2,AutoFakeSlant=.2]{TW-Kai-98_1} % 副字體：全字庫正楷體
+
+%% Pictures
+\usepackage{graphicx}
+
+%% Tables
+\usepackage{tabularx, ragged2e}
+\usepackage{booktabs}
+\usepackage{array, makecell}
+\setcellgapes{4pt}
+\newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}%
+\newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}%
+\newcolumntype{C}[1]{>{\hsize=#1\hsize\Centering\arraybackslash}X} % centered "X" column
+%\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+%\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+%\newcolumntype{C}{>{\Centering\arraybackslash}X} % centered "X" column
+\newcolumntype{b}{X}
+\newcolumntype{s}{>{\hsize=.5\hsize}X}
+\newcommand{\heading}[1]{\multicolumn{1}{c}{#1}}
+
+%% Figures
+\usepackage{subcaption} % similar to subfigure package but more updated
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+%% Scales
+\usepackage[export]{adjustbox}
+
+%% Tikz
+\usepackage{tikz}
+\usepackage{tikzpagenodes}
+\usetikzlibrary{tikzmark}
+\newcounter{tikzmarklines}\setcounter{tikzmarklines}{0} % 
+\makeatletter
+\global\let\tikz@ensure@dollar@catcode=\relax
+\makeatother
+%%% Diagram
+\usetikzlibrary{shapes, arrows}
+\usetikzlibrary{trees, shadings}
+\usetikzlibrary{backgrounds, scopes, fit, positioning}
+\tikzstyle{every node}=[%
+    very thick, % Define thickness of borders
+    text centered, % Centering Align Text
+    align=center % Centering Align Element
+    ]
+\tikzstyle{startstop} = [%
+    rectangle, 
+    rounded corners, 
+    draw=black,
+    minimum width=3cm, 
+    minimum height=1cm, 
+    fill=red!30
+    ]
+\tikzstyle{io} = [%
+    trapezium, 
+    trapezium left angle=70, 
+    trapezium right angle=110, 
+    draw=black,
+    minimum width=1cm, 
+    minimum height=1cm, 
+    fill=blue!30
+    ]
+\tikzstyle{process} = [%
+    rectangle, 
+    draw=black,
+    minimum width=3cm, 
+    minimum height=1cm, 
+    fill=orange!30
+    ]
+\tikzstyle{decision} = [%
+    diamond, 
+    draw=black,
+    align=flush center,
+    fill=green!30 
+    ]
+\tikzstyle{function} = [%
+    rectangle split, 
+    rectangle split horizontal, 
+    rectangle split parts = 3, 
+    draw=black,
+    minimum width=3cm, 
+    minimum height=1cm, 
+    fill=purple!30
+    ]
+\tikzstyle{off page con} = [%
+    signal,
+    signal to=south,
+    draw=black,
+    minimum width=1cm, 
+    minimum height=1cm, 
+    fill=yellow!30
+    ]
+\tikzstyle{off page con east} = [%
+    signal,
+    signal to=east,
+    draw=black,
+    minimum width=1cm, 
+    minimum height=1cm, 
+    fill=yellow!30
+    ]
+\tikzstyle{doc} = [%
+    tape,
+    tape bend top=none,
+    draw=black,
+    minimum width=3cm, 
+    minimum height=1cm, 
+    fill=cyan!30
+    ]
+\tikzstyle{arrow} = [very thick,->,>=stealth]
+%%% Import predefined node styles
+%\usepackage{marcos/diagram}
+
+%\usepackage[mode=buildnew]{standalone}
+\usepackage{standalone}
+
+%% Captions
+\usepackage{float}
+\floatstyle{plaintop}
+\restylefloat{table}
+\usepackage{caption}
+\captionsetup{%
+    labelsep=space, 
+    labelfont=bf, 
+    textfont=bf, 
+    tableposition=top
+}
+
+%% References
+\usepackage[hyphens]{url}
+\bibliographystyle{IEEEtran}
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+
+%% Hyperlinks
+\usepackage[breaklinks]{hyperref}
+\hypersetup{%
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+%% Definetions
+%%% Color
+\usepackage{xcolor}
+%--- Contributed by Prof. Po-Ming Lee ---%
+\definecolor{midblue}{rgb}{0.145,0.490,0.882} 
+\definecolor{myred}{cmyk}{0,1,0.13,0}
+\definecolor{grey}{gray}{0.7}
+\definecolor{black}{rgb}{0,0,0}
+\definecolor{litegrey}{gray}{0.75}
+\definecolor{whitegrey}{rgb}{0.90,0.90,0.90}
+\definecolor{darkgrey}{gray}{0.3}
+\definecolor{olivegreen}{cmyk}{0.95,0,0.95,0.75}%was {0.64,0,0.95,0.40}
+\definecolor{greenyellow}{cmyk}{0.15,0,0.69,0}
+\definecolor{pinegreen}{cmyk}{0.92,0,0.59,0.25}
+\definecolor{bluegreen}{cmyk}{0.85,0,0.33,0}
+\definecolor{lavender}{cmyk}{0,0.48,0,0}
+\definecolor{orange}{cmyk}{0,.32,.52,0}%Apricot
+\definecolor{DarkOrchid}{cmyk}{0.40,0.80,0.20,0}
+\definecolor{purple}{RGB}{51,0,154}
+\definecolor{steelblue}{rgb}{.275,.51,.71}
+\definecolor{mygray}{gray}{0.92}
+\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{brown}{rgb}{.64,.17,.17}
+\definecolor{brown4}{rgb}{.54,.14,.14}
+\definecolor{burlywood4}{rgb}{.54,.45,.33}
+\definecolor{hgray}{gray}{.5}
+\definecolor{lgray}{gray}{0.8}
+%--- Contributed by Prof. Po-Ming Lee ---%
+
+%% Code blocks 
+\usepackage{listings}
+\lstset{%
+    basicstyle=\footnotesize\ttfamily,
+    frame=single,
+    numbers=left,
+    stepnumber=1,
+    tabsize=2,
+    showstringspaces=false,
+    xleftmargin=-5pt,
+%    breaklines=true,
+    commentstyle=\color{red},
+    keywordstyle=\color{blue},
+    stringstyle=\color{red}
+%    breakatwhitespace=false
+}
+
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+\usepackage{pmboxdraw}
+\usepackage{newunicodechar}
+\newfontfamily{\timesnewroman}{Times New Roman}
+\newunicodechar{├}{{\timesnewroman ├}}
+\newunicodechar{└}{{\timesnewroman └}}
+\newunicodechar{─}{{\timesnewroman ─}}
+%--- Contributed by Prof. Po-Ming Lee ---%
+\DefineVerbatimEnvironment{screendump}{Verbatim}{%
+    breaklines=true,
+    numbers=left,
+    xleftmargin=16pt,
+    fontsize=\footnotesize,
+    numbersep=2mm,
+    frame=single,
+    framerule=0.8mm,
+    commandchars=\\\{\}
+}
+%--- Contributed by Prof. Po-Ming Lee ---%
+
+\lstnewenvironment{screendumps}[1][]{%
+    \fvset{commandchars=\\\{\}}%
+    \renewcommand\lstlistingname{擷取畫面}%
+    \lstset{%
+        fancyvrb=true,
+        numbers=left,
+        xleftmargin=16pt,
+        basicstyle=\footnotesize\ttfamily,
+        numbersep=5mm,
+        frame=single,
+        framerule=0.8mm,
+        captionpos=b,
+        #1
+        }}{}
+
+%%% Define new commands for code blocks
+\newcommand{\cmd}[1]{\colorbox{lgray}{#1}}
+\newcommand{\file}[1]{\colorbox{lgray}{#1}}
+\newcommand{\dir}[1]{\colorbox{lgray}{#1}}
+\newcommand{\parameter}[1]{\colorbox{lgray}{#1}}
+\newcommand{\ul}[1]{% 
+    \underline{#1}
+}
+
+%% Keystroke
+\usepackage{keystroke}
+

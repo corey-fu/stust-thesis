@@ -1,0 +1,51 @@
+\documentclass{stustthesis}
+
+%\usepackage[overlap, CJK]{ruby}
+%\renewcommand{\rubysep}{0em}
+
+\usepackage{graphics,fontspec}
+\setmainfont{Times New Roman}
+\newfontfamily\timesnewroman{Times New Roman}
+\newfontfamily\TWKai{TW-Kai-98_1}
+\newfontfamily\TWKaivert[RawFeature=vertical]{TW-Kai-98_1}
+
+\usepackage{booktabs}
+\usepackage{tabularx, ragged2e}
+\usepackage{array, makecell}
+\newcolumntype{b}{X}
+\newcolumntype{s}{>{\hsize=.5\hsize}X}
+
+\newcommand{\vertical}[1]{%
+    \noindent
+    \begin{minipage}{\textwidth}
+        \hfill % ensure right-alignment
+        \rotatebox{-90}{\TWKaivert #1}
+    \end{minipage}
+}
+\newcommand{\verticaltext}[1]{%
+    \rotatebox{-90}{\TWKaivert #1}
+}
+
+\input{information}
+
+\begin{document}
+    \NoBgThispage%
+    \begin{center}
+%        \setlength{\tabcolsep}{2pt}
+        \begin{rotate}{270}
+%        \begin{tabular}{cc}
+%            \toprule
+%            \verticaltext{\instituteCHT \degreeCHT 班} & \verticaltext{\universityCHT}\\
+%            \midrule
+%            \verticaltext{學號：\timesnewroman\stuIDENG} & \verticaltext{\degreeCHT 論文} \\
+%            \midrule
+%            \multicolumn{2}{c}{\verticaltext{\subjectCHT}} \\
+%            \midrule
+%            \multicolumn{2}{c}{\verticaltext{研究生：\writerCHT}}
+        \begin{tabular}{cccc}
+            \bfseries\TWKaivert\universityCHT & \bfseries\TWKaivert\degreeCHT 論文 & \bfseries\multirow{2}{*}{\TWKaivert\subjectCHT} & \bfseries\multirow{2}{*}{\TWKaivert 研究生：\writerCHT} \\
+           \bfseries\TWKaivert\instituteCHT\degreeCHT 班 & \bfseries\TWKaivert 學號：\timesnewroman\stuIDENG & &
+        \end{tabular}
+        \end{rotate}
+    \end{center}
+\end{document}

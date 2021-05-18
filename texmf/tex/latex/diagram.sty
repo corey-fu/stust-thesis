@@ -1,0 +1,73 @@
+%%% Diagram
+\usetikzlibrary{shapes, arrows}
+\usetikzlibrary{trees, shadings}
+\usetikzlibrary{backgrounds, scopes, fit, positioning}
+\tikzstyle{every node}=[%
+    very thick, % Define thickness of borders
+    text centered, % Centering Align Text
+    align=center % Centering Align Element
+    ]
+\tikzstyle{startstop} = [%
+    rectangle, 
+    rounded corners, 
+    draw=black,
+    minimum width=3cm, 
+    minimum height=1cm, 
+    fill=red!30
+    ]
+\tikzstyle{io} = [%
+    trapezium, 
+    trapezium left angle=70, 
+    trapezium right angle=110, 
+    draw=black,
+    minimum width=1cm, 
+    minimum height=1cm, 
+    fill=blue!30
+    ]
+\tikzstyle{process} = [%
+    rectangle, 
+    draw=black,
+    minimum width=3cm, 
+    minimum height=1cm, 
+    fill=orange!30
+    ]
+\tikzstyle{decision} = [%
+    diamond, 
+    draw=black,
+    align=flush center,
+    fill=green!30 
+    ]
+\tikzstyle{function} = [%
+    rectangle split, 
+    rectangle split horizontal, 
+    rectangle split parts = 3, 
+    draw=black,
+    minimum width=3cm, 
+    minimum height=1cm, 
+    fill=purple!30
+    ]
+\tikzstyle{off page con} = [%
+    signal,
+    signal to=south,
+    draw=black,
+    minimum width=1cm, 
+    minimum height=1cm, 
+    fill=yellow!30
+    ]
+\tikzstyle{off page con east} = [%
+    signal,
+    signal to=east,
+    draw=black,
+    minimum width=1cm, 
+    minimum height=1cm, 
+    fill=yellow!30
+    ]
+\tikzstyle{doc} = [%
+    tape,
+    tape bend top=none,
+    draw=black,
+    minimum width=3cm, 
+    minimum height=1cm, 
+    fill=cyan!30
+    ]
+\tikzstyle{arrow} = [very thick,->,>=stealth]
