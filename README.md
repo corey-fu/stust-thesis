@@ -180,3 +180,6 @@ xelatex → bibtex → xelatex
 - `\begin{abstract}{cht}` → 多加 `{cht}` 代表該環境的章節標題已設定為繁體中文，也就是 `摘要`
 - `\begin{abstract}` → 則設定為英文： `Abstract`
 
+### 編譯順序
+
+請單獨編譯口試委員審定書（`censorship.tex`），待產出`censorship.pdf`後，再編譯主檔案（`main.tex`）。
