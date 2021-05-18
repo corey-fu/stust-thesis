@@ -2,9 +2,9 @@
 
 ## 前言
 
-鑑於各實驗室產出的論文排版品質不一，導致後續的學弟妹們參考時很是迷惘。
+鑑於各系或是實驗室產出的論文排版品質不一，導致後續的學弟妹們參考時很是迷惘。
 
-為此，本模板將以學校釋出的[論文模板](./texmf/doc/THESIS_example.pdf)作為準則，並使用LaTeX排版，讓學弟妹們不必再煩惱論文排版的設定。
+為此，本模板將以學校釋出的[論文模板](./texmf/doc/THESIS_example.pdf)作為準則，並使用 LaTeX 排版，不必再煩惱論文排版的設定。
 
 ## 結構
 
@@ -50,13 +50,25 @@
 
 ### tex檔
 
-bookspine.tex ： 書脊 （開發中，請勿使用）
+bookspine.tex ： 書脊 （目前開發中，請勿使用）
 
 censorship.tex  ： 口試委員審定書（請單獨編譯）
 
 information.tex ： 論文相關資訊（標題、作者、日期等...）
 
-main.tex ： 主檔案，可在此加入位於chapters的tex檔案
+main.tex ： 主檔案，可在此加入位於 chapters 的 tex 檔案
+
+### sty檔
+
+config.sty ： 本模板的設定檔，可適用於其他類型的文件（例如研討會）
+
+xCJKnumb.sty ： 產生中文數字的設定檔，[來源](http://latex.ustc.googlepages.com/xCJKnumb.tar.gz)在此。
+
+diagram.sty ： 本模板定義的流程圖各符號之設定檔
+
+### cls檔
+
+stust-thesis.cls ： 本模板所使用的 class 類型檔案，用來新增、定義、重新定義 LaTeX 命令。
 
 ### 資料夾
 
@@ -72,9 +84,18 @@ texmf ： 放置定義此模板的檔案
 
 請依本身的作業系統安裝以下工具：
 
-- Windows : MikTex
-- GNU/Linux
-  - Debian : texlive
+- Windows/MacOS : MikTex
+- GNU/Linux : 各發行版本中包含texlive的套件
+
+```bash
+# Debian
+apt install texlive \
+	texlive-xetex \
+	texlive-lang-chinese \
+	texlive-bibtex-extra \
+	texlive-science \
+	latex-cjk-all
+```
 
 ### 字型
 
@@ -82,10 +103,10 @@ texmf ： 放置定義此模板的檔案
 
 ### 環境設定（類Unix發行版本）
 
-由於本模板是使用客製化的class及sty類型檔案，為了讓檔案在編譯時可辨認到，有兩種方法：
+由於本模板是使用客製化的class及sty類型設定檔案，為了讓 LaTeX 在編譯時可辨認到該檔案，有兩種方法：
 
-- 將class及sty類型檔案複製至系統路徑（推薦）
-- 設定環境變數
+1. 將位於 `texmf` 裡的所有`cls`及`sty`類型檔案都複製至系統路徑（推薦）
+2. 設定環境變數
 
 第一種就不多做解釋了，第二種的話是位於此資料夾並直接在BASH環境底下執行：
 
@@ -95,7 +116,7 @@ export TEXMFHOME=./texmf
 
 ## 使用方法
 
-TeX 引擎請使用xelatex，產生參考文獻請使用bibtex，執行順序如下：
+TeX 引擎請使用 xelatex ，產生參考文獻請使用 bibtex ，執行順序如下：
 
 xelatex → bibtex → xelatex
 
