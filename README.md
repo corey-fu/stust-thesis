@@ -48,6 +48,10 @@
 
 ```
 
+### bib檔
+
+references.bib ： 存放參考文獻的檔案。
+
 ### tex檔
 
 bookspine.tex ： 書脊 （目前開發中，請勿使用）。
@@ -62,7 +66,7 @@ main.tex ： 主檔案，可在此加入位於 chapters 的 tex 檔案，論文�
 
 config.sty ： 本模板的設定檔，可適用於其他類型的文件（例如**研討會**）。
 
-xCJKnumb.sty ： 產生中文數字的設定檔，[來源](http://latex.ustc.googlepages.com/xCJKnumb.tar.gz)在此。
+xCJKnumb.sty ： 可產生中日韓數字的設定檔，[來源](http://latex.ustc.googlepages.com/xCJKnumb.tar.gz)在此。
 
 diagram.sty ： 本模板定義的流程圖各符號之設定檔。
 
@@ -76,7 +80,7 @@ chapters ： 放置章節的tex檔案。
 
 logo ： 學校的Logo。
 
-source_code ： 放置原始碼。
+source_code ： 放置原始碼（optional）。
 
 texmf ： 放置定義此模板的檔案。
 
@@ -84,7 +88,7 @@ texmf ： 放置定義此模板的檔案。
 
 請依本身的作業系統安裝以下工具：
 
-- Windows/MacOS : MikTex
+- Windows/MacOS : MikTeX （**請安裝所有的texlive套件**）
 - GNU/Linux : 各發行版本中包含texlive的套件
 
 ```bash
@@ -99,28 +103,23 @@ apt-get install texlive \
 
 ### 字型
 
-本模板使用的是國發會所提供的[全字庫正楷體](https://data.gov.tw/dataset/5961)，位於本資料夾中的 `texmf/fonts/truetype` ，請安裝此字型，否則會編譯失敗。
+本模板並不使用微軟提供的標楷體，取而代之的是國發會所提供的[全字庫正楷體](https://data.gov.tw/dataset/5961)，位於本資料夾中的 `texmf/fonts/truetype` ，請安裝此字型，否則會編譯失敗。
 
-### 環境設定（類Unix發行版本）
+### 環境設定
 
-由於本模板是使用客製化的class及sty類型設定檔案，為了讓 LaTeX 在編譯時可辨認到該檔案，有兩種方法：
+由於本模板是使用客製化的 `cls` 及 `sty` 類型設定檔案，為了讓 LaTeX 在編譯時可辨認到，有以下作法：
 
-1. 將位於 `texmf` 裡的所有`cls`及`sty`類型檔案都複製至 texlive 的系統路徑（推薦）
-2. 設定環境變數
-
-第一種就不多做解釋了，第二種的話是位於此資料夾並直接在BASH環境底下執行：
-
-```bash
-export TEXMFHOME=./texmf
-```
+1. 將位於 `texmf` 裡的所有 `cls` 及 `sty` 類型檔案都複製至 texlive 的系統路徑。
+2. MikTeX 的使用者可新增位於本資料夾中的 `texmf` ，使用其作為設定檔的根目錄，詳情請參考 MikTex [官方說明](https://miktex.org/kb/texmf-roots)。
+3. 承上，類UNIX或GNU/Linux作業系統的使用者可於終端機中設定環境變數 ： `export TEXMFHOME=./texmf` 。
 
 ## 使用方法
 
-TeX 引擎請使用 `xelatex` ，產生參考文獻請使用 `bibtex` ，執行順序如下：
+> 以下只說明在類UNIX或GNU/Linux作業系統下的使用方法
 
-xelatex → bibtex → xelatex
+大方向：TeX 引擎請使用 `xelatex` ，若需產生參考文獻請使用 `bibtex`，相關細節請依照你的IDE調整。
 
-※執行bibtex時請注意不要包含 ` .tex ` 副檔名，不然會出錯！
+若是第一次接觸 LaTeX 可參考 [大家來學LATEX](https://jupiter.math.nctu.edu.tw/~smchang/latex/latex123.pdf) ， 非常推薦大家拜讀由李果正先生所撰寫的說明文件。
 
 ## 開始撰寫
 
@@ -152,7 +151,7 @@ xelatex → bibtex → xelatex
 \day{15}{十五}
 ```
 
-相關資訊將會用至封面頁、書名頁、書脊頁、口試委員審定書中。
+只需輸入一次，相關資訊將會用至**封面頁**、**書名頁**、**書脊頁**、**口試委員審定書**中。
 
 ### 自定義環境
 
@@ -182,4 +181,23 @@ xelatex → bibtex → xelatex
 
 ### 編譯順序
 
-請單獨編譯口試委員審定書（`censorship.tex`），待產出`censorship.pdf`後，再編譯主檔案（`main.tex`）。
+1. 編輯完 `information.tex` 後請單獨編譯口試委員審定書（`censorship.tex`）：
+
+   ```bash
+   xelatex censorship.tex
+   ```
+
+   待產出`censorship.pdf`後，再編譯論文（`main.tex`）。
+
+2. 新增或修改章節（`chapters/*.tex`）或交互參照（`\cite{}`）或參考文獻（`reference.bib`）的內容。
+
+3. 接著編譯論文（`main.tex`），其執行順序如下：
+
+   ```bash
+   xelatex main.tex
+   bibtex main 
+   xelatex main.tex
+   xelatex main.tex
+   ```
+
+   ※執行 `xelatex` 時包含或不包含 ` .tex ` 副檔名都可執行，唯有執行 `bibtex` 時請注意不要包含 ` .tex ` 副檔名，不然會出錯！
