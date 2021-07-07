@@ -29,8 +29,9 @@
 \RequirePackage{xCJKnumb} 
 
 % Remove headers in book class
-\pagestyle{fancy}
-\fancyhf{} % clear all headers and footers
+%\pagestyle{fancy}
+\pagestyle{plain}
+%\fancyhf{} % clear all headers and footers
 \renewcommand{\headrulewidth}{0pt} % remove rule between header and text
 
 % Configure depths of sections
@@ -111,19 +112,14 @@
 % Declare customize environments
 \newenvironment{abstract}[1]%
 {%
-%    \setcounter{page}{2}
     \addtocounter{page}{1}
     \normalexpandarg% Ensure args to be passed to \IfStrEq
     \IfStrEq{#1}{cht}{%
     \chapter*{摘要}
     \addcontentsline{toc}{chapter}{摘要}
-    \thispagestyle{plain}%
-    \vspace*{0.5cm}%
     }{%
     \chapter*{Abstract}%
     \addcontentsline{toc}{chapter}{Abstract}%
-    \thispagestyle{plain}%
-    \vspace*{0.5cm}%
     }
 }% before
 {\clearpage}% after
