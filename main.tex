@@ -7,6 +7,16 @@
 
 %--------Please enter your information for the thesis--------%
 \input{information}
+% Meta Informations
+\makeatletter
+\AtBeginDocument{%
+  \hypersetup{%
+    pdftitle={\titleCHT},
+    pdfsubject={\degreeCHT 論文},
+    pdfauthor={\authorCHT}
+  }
+}
+\makeatother
 %--------Please enter your information for the thesis--------%
 
 \begin{document}
@@ -20,7 +30,7 @@
     % 書名頁
     \maketitle
     % 口試委員審定書
-    \includepdf[pages=-]{censorship.pdf}
+    \includepdf[pages=-]{certification.pdf}
     % 啟用浮水印
     \activateBG%
     % 摘要
