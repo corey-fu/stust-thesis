@@ -39,7 +39,7 @@
 │       │   ├── THESIS_example.doc
 │       │   └── THESIS_example.pdf
 │       └── latex
-│           ├── config.sty
+│           ├── stust-config.sty
 │           ├── diagram.sty
 │           ├── stust-thesis.cls
 │           └── xCJKnumb.sty
@@ -60,7 +60,7 @@ main.tex ： 主檔案，可在此加入位於 chapters 的 tex 檔案，論文�
 
 ### sty檔
 
-config.sty ： 本模板的設定檔，可適用於其他類型的文件（例如**研討會**）。
+stust-config.sty ： 本模板的設定檔，可適用於其他類型的文件（例如**研討會**）。
 
 xCJKnumb.sty ： 可產生中日韓數字的設定檔，[來源](http://latex.ustc.googlepages.com/xCJKnumb.tar.gz)在此。
 
@@ -105,7 +105,7 @@ apt-get install texlive \
 
 由於本模板是使用客製化的 `cls` 及 `sty` 類型設定檔案，為了讓 LaTeX 在編譯時可辨認到，有以下作法：
 
-1. 將位於 `texmf` 裡的所有 `cls` 及 `sty` 類型檔案都複製至 texlive 的系統路徑。
+1. 將位於 `texmf` 裡的所有 `cls` 及 `sty` 類型檔案都複製至 texlive 的系統路徑（e.g. `/usr/local/share/texmf`）。
 2. MikTeX 的使用者可新增位於本資料夾中的 `texmf` ，使用其作為設定檔的根目錄，詳情請參考 MikTex [官方說明](https://miktex.org/kb/texmf-roots)。
 3. 承上，類UNIX或GNU/Linux作業系統的使用者可於終端機中設定環境變數 ： `export TEXMFHOME=./texmf` 。
 
