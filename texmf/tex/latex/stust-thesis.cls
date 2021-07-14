@@ -112,7 +112,7 @@
 % Declare customize environments
 \newenvironment{abstract}[1]%
 {%
-    \addtocounter{page}{1}
+    %\addtocounter{page}{1}
     \normalexpandarg% Ensure args to be passed to \IfStrEq
     \IfStrEq{#1}{cht}{%
     \chapter*{摘要}
