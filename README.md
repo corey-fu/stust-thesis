@@ -36,7 +36,6 @@
 │   └── tex
 │       ├── doc
 │       │   ├── bookspine.doc
-│       │   ├── censorship.odt
 │       │   ├── THESIS_example.doc
 │       │   └── THESIS_example.pdf
 │       └── latex
@@ -45,7 +44,6 @@
 │           ├── stust-thesis.cls
 │           └── xCJKnumb.sty
 └── texmf.cnf
-
 ```
 
 ### bib檔
@@ -55,8 +53,6 @@ references.bib ： 存放參考文獻的檔案。
 ### tex檔
 
 bookspine.tex ： 書脊 （目前開發中，請勿使用）。
-
-censorship.tex  ： 口試委員審定書（請單獨編譯）。
 
 information.tex ： 論文相關資訊（標題、作者、日期等...）。
 
@@ -151,7 +147,7 @@ apt-get install texlive \
 \day{15}{十五}
 ```
 
-只需輸入一次，相關資訊將會用至**封面頁**、**書名頁**、**書脊頁**、**口試委員審定書**中。
+只需輸入一次，相關資訊將會用至**封面頁**、**書名頁**、**書脊頁**中。
 
 ### 自定義環境
 
@@ -178,26 +174,3 @@ apt-get install texlive \
 
 - `\begin{abstract}{cht}` → 多加 `{cht}` 代表該環境的章節標題已設定為繁體中文，也就是 `摘要`
 - `\begin{abstract}` → 則設定為英文： `Abstract`
-
-### 編譯順序
-
-1. 編輯完 `information.tex` 後請單獨編譯口試委員審定書（`censorship.tex`）：
-
-   ```bash
-   xelatex censorship.tex
-   ```
-
-   待產出`censorship.pdf`後，再編譯論文（`main.tex`）。
-
-2. 新增或修改章節（`chapters/*.tex`）或交互參照（`\cite{}`）或參考文獻（`reference.bib`）的內容。
-
-3. 接著編譯論文（`main.tex`），其執行順序如下：
-
-   ```bash
-   xelatex main.tex
-   bibtex main 
-   xelatex main.tex
-   xelatex main.tex
-   ```
-
-   ※執行 `xelatex` 時包含或不包含 ` .tex ` 副檔名都可執行，唯有執行 `bibtex` 時請注意不要包含 ` .tex ` 副檔名，不然會出錯！
