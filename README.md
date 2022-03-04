@@ -11,8 +11,6 @@
 ```bash
 .
 ├── bookspine.tex
-├── censorship.pdf
-├── censorship.tex
 ├── chapters
 │   ├── abstract.tex
 │   ├── acknowledgements.tex
@@ -94,12 +92,15 @@ apt-get install texlive \
 	texlive-lang-chinese \
 	texlive-bibtex-extra \
 	texlive-science \
-	latex-cjk-all
+	latex-cjk-all \
+	ttf-mscorefonts-installer # For 'Times New Roman'
 ```
 
 ### 字型
 
-本模板並不使用微軟提供的標楷體，取而代之的是國發會所提供的[全字庫正楷體](https://data.gov.tw/dataset/5961)，位於本資料夾中的 `texmf/fonts/truetype` ，請安裝此字型，否則會編譯失敗。
+本模板總共使用兩種字型，請安裝:
+- 英文: Times New Roman
+- 中文: 國發會提供的[全字庫正楷體](https://data.gov.tw/dataset/5961)，位於本資料夾中的 `texmf/fonts/truetype`。 
 
 ### 環境設定
 
