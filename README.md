@@ -9,7 +9,6 @@
 ## 結構
 
 ```bash
-.
 ├── bookspine.tex
 ├── chapters
 │   ├── abstract.tex
@@ -17,12 +16,16 @@
 │   ├── appendix.tex
 │   ├── introduction.tex
 │   └── symbols.tex
+├── docs
 ├── information.tex
 ├── logo
 │   ├── STUST_LOGO.jpg
 │   └── STUST_LOGO_m.png
 ├── main.pdf
 ├── main.tex
+├── makefile
+├── output
+│   └── main_final.pdf
 ├── README.md
 ├── references.bib
 ├── source_code
@@ -37,8 +40,8 @@
 │       │   ├── THESIS_example.doc
 │       │   └── THESIS_example.pdf
 │       └── latex
-│           ├── stust-config.sty
 │           ├── diagram.sty
+│           ├── stust-config.sty
 │           ├── stust-thesis.cls
 │           └── xCJKnumb.sty
 └── texmf.cnf
@@ -76,7 +79,7 @@ logo ： 學校的Logo。
 
 source_code ： 放置原始碼（optional）。
 
-texmf ： 放置定義此模板的檔案。
+texmf ： 放置定義此模板的檔案（參考用）。
 
 ## 行前準備
 
@@ -92,6 +95,7 @@ apt-get install texlive \
 	texlive-lang-chinese \
 	texlive-bibtex-extra \
 	texlive-science \
+	texlive-publishers \
 	latex-cjk-all \
 	ttf-mscorefonts-installer # For 'Times New Roman'
 ```
@@ -99,26 +103,28 @@ apt-get install texlive \
 ### 字型
 
 本模板總共使用兩種字型，請安裝:
-- 英文: Times New Roman
+- 英文: Times New Roman (pkg for debian: ``ttf-mscorefonts-installer``)
 - 中文: 國發會提供的[全字庫正楷體](https://data.gov.tw/dataset/5961)，位於本資料夾中的 `texmf/fonts/truetype`。 
 
-### 環境設定
-
-由於本模板是使用客製化的 `cls` 及 `sty` 類型設定檔案，為了讓 LaTeX 在編譯時可辨認到，有以下作法：
-
-1. 將位於 `texmf` 裡的所有 `cls` 及 `sty` 類型檔案都複製至 texlive 的系統路徑（e.g. `/usr/local/share/texmf`）。
-2. MikTeX 的使用者可新增位於本資料夾中的 `texmf` ，使用其作為設定檔的根目錄，詳情請參考 MikTex [官方說明](https://miktex.org/kb/texmf-roots)。
-3. 承上，類UNIX或GNU/Linux作業系統的使用者可於終端機中設定環境變數 ： `export TEXMFHOME=./texmf` 。
+```bash
+$ make font.check			# 檢查全字庫正楷體是否已安裝
+$ sudo make font.install	# 安裝全字庫正楷體
+```
 
 ## 使用方法
 
-> 以下只說明在類UNIX或GNU/Linux作業系統下的使用方法
+> 目前只支援GNU/Linux作業系統下使用 ``make`` ， Windows/Mac用戶目前請手動編譯。
 
-大方向：TeX 引擎請使用 `xelatex` ，若需產生參考文獻請使用 `bibtex`，相關細節請依照你的IDE調整。
+請於本資料夾中使用 `make` 工具編譯 `main.tex` ， 即可產出論文 `main.pdf` ， 以下為使用範例：
 
-若是第一次接觸 LaTeX 可參考 [大家來學LATEX](https://jupiter.math.nctu.edu.tw/~smchang/latex/latex123.pdf) ， 非常推薦大家拜讀由李果正先生所撰寫的說明文件。
+```bash
+$ make tex.build 			# 編譯主檔案
+$ make tex.all   			# 編譯主檔案及參考文獻
+```
 
 ## 開始撰寫
+
+> 若是第一次接觸 LaTeX 可參考 [大家來學LATEX](https://jupiter.math.nctu.edu.tw/~smchang/latex/latex123.pdf) ， 非常推薦大家拜讀由李果正先生所撰寫的說明文件。
 
 ### 論文相關資訊
 
