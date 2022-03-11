@@ -1,40 +1,69 @@
 # Author: Yan-Guo Fu (CoreyFu) 
-# Contact: mailto:MA830213@stust.edu.tw / mailto:c12378978@gmail.com
+# Contact: mailto:MA830213@stust.edu.tw / mailto:coreyfu088@gmail.com
 
-# Program
+# PROGRAM 
 TEX_PROG = xelatex
-BIB_PROG = biblatex
+BIB_PROG = bibtex
 
-# File
-FILE = main
-TEX = $(FILE).tex
-PAPER = $(FILE).pdf
+# FILE
+MAIN = main
+FINAL = main_fianl
+TEX := $(MAIN).tex
+PAPER := $(MAIN).pdf
+PAPER_FINAL := $(FINAL).pdf
+FONT_TW = TW-Kai-98_1.ttf
+OBJ := *.aux *.bbl *.blg *.lof *.log *.lot *.out *.toc
 
-# Location
+# PATH 
 DST = output
-#CONFIG = /usr/share/texlive/texmf-dist/tex/latex/stust
+CHA = chapters
+PATH_TO_FONT_LOCAL = ./texmf/fonts/truetype
+PATH_TO_FONT_GLOBAL = /usr/share/fonts
+PATH_TO_FONT_TW := $(PATH_TO_FONT_GLOBAL)/truetype/ndc
 
-# Variables
-TEXMFHOME = texmf
+# TEXMF
+TEXMF_LOCAL = ./texmf
 
-# Error
-FONTS_NOT_FOUND = $(error Please check fonts have been installed!)
-xCJKnumb_NOT_FOUND = $(error Please check xCJKnumb has been installed!)
+# ERROR
+ERROR_IEEEtran = $(error I couldn't open style file IEEEtran.bst)
 
-.PHONY: fonts
-fonts:
-	cp texmf/fonts/truetype/* /usr/share/fonts/truetype/
-	fc-cache
+# EXECUTION
+.PHONY: all install clean
 
-.PHONY: all
-all:
-	TEXMFHOME=$(TEXMFHOME) $(TEX_PROG) $(TEX)
-	$(BIB_PROG) $(TEX)
-	TEXMFHOME=$(TEXMFHOME) $(TEX_PROG) $(TEX)
+tex.build: 
+	TEXMFHOME=$(TEXMF_LOCAL) $(TEX_PROG) $(TEX) 			# Create/Change contents
 
-.PHONY: clean
-clean:
-	-rm -f *.aux *.dvi *.idx *.ilg *.ind *.log *.nav *.out *.snm *.xdv *.toc 
+tex.all: tex.build 
+	$(BIB_PROG) $(MAIN)						# Compile the bibliography
+	TEXMFHOME=$(TEXMF_LOCAL) $(TEX_PROG) $(TEX) 			# Create/Change contents
 
-.PHONY: err
-err: ; $(FONT_NOT_FOUND)
+tex.install: 
+	@echo "Copy ${PAPER} to $(DST)/"
+	@cp ${PAPER} $(DST)/$(PAPER_FINAL)
+
+font.install: font.check
+ifneq ($(shell id -u), 0)
+	@echo "Please install fonts with root privilege!"		# Reminds users become root to use
+else
+	@echo "Installing $(FONT_TW)..."
+	@mkdir -p $(PATH_TO_FONT_TW) 					# Create ndc directory in PATH
+	@cp $(PATH_TO_FONT_LOCAL)/$(FONT_TW) $(PATH_TO_FONT_TW)		# Copy font to ndc directory
+	@fc-cache							# Install it
+	$(font.check)
+endif
+
+font.check:
+ifeq ($(shell fc-list |grep "$(FONT_TW)"),)
+	@echo "$(FONT_TW) is not installed yet..."
+else
+	@echo "$(FONT_TW) has been installed!" && exit 1
+endif
+
+distclean: clean 
+	@echo "Removing *.aux in $(CHA) and $(DST) files..."
+	@rm -f $(CHA)/*.aux
+	@rm -f $(DST)/* 
+
+clean: 
+	@echo "Removing staging files..."
+	@rm -f $(OBJ)
