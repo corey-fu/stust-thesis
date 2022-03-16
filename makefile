@@ -41,6 +41,15 @@ tex.install:
 	@echo "Copy ${PAPER} to $(DST)/"
 	@cp ${PAPER} $(DST)/$(PAPER_FINAL)
 
+tex.distclean: tex.clean 
+	@echo "Removing *.aux in $(CHA) and $(DST) files..."
+	@rm -f $(CHA)/*.aux
+	@rm -f $(DST)/* 
+
+tex.clean: 
+	@echo "Removing staging files..."
+	@rm -f $(OBJ)
+
 font.install: font.check
 ifneq ($(shell id -u), 0)
 	@echo "Please install fonts with root privilege!"		# Reminds users become root to use
@@ -58,12 +67,3 @@ ifeq ($(shell fc-list |grep "$(FONT_TW)"),)
 else
 	@echo "$(FONT_TW) has been installed!" && exit 1
 endif
-
-distclean: clean 
-	@echo "Removing *.aux in $(CHA) and $(DST) files..."
-	@rm -f $(CHA)/*.aux
-	@rm -f $(DST)/* 
-
-clean: 
-	@echo "Removing staging files..."
-	@rm -f $(OBJ)
