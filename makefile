@@ -37,18 +37,21 @@ tex.all: tex.build
 	$(BIB_PROG) $(MAIN)						# Compile the bibliography
 	TEXMFHOME=$(TEXMF_LOCAL) $(TEX_PROG) $(TEX) 			# Create/Change contents
 
-tex.install: 
-	@echo "Copy ${PAPER} to $(DST)/"
-	@cp ${PAPER} $(DST)/$(PAPER_FINAL)
-
-tex.distclean: tex.clean 
-	@echo "Removing *.aux in $(CHA) and $(DST) files..."
-	@rm -f $(CHA)/*.aux
-	@rm -f $(DST)/* 
-
 tex.clean: 
 	@echo "Removing staging files..."
 	@rm -f $(OBJ)
+	@rm -f $(CHA)/*.aux
+
+tex.distclean: tex.clean 
+	@echo "Removing thesis paper..."
+	@rm -f $(PAPER)
+
+font.check:
+ifeq ($(shell fc-list |grep "$(FONT_TW)"),)
+	@echo "$(FONT_TW) is not installed yet..."
+else
+	@echo "$(FONT_TW) has been installed!" && exit 1
+endif
 
 font.install: font.check
 ifneq ($(shell id -u), 0)
@@ -61,9 +64,3 @@ else
 	$(font.check)
 endif
 
-font.check:
-ifeq ($(shell fc-list |grep "$(FONT_TW)"),)
-	@echo "$(FONT_TW) is not installed yet..."
-else
-	@echo "$(FONT_TW) has been installed!" && exit 1
-endif
