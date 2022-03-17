@@ -1,6 +1,5 @@
 % Author: Yan-Guo Fu (CoreyFu) 
-% Contact: mailto:MA830213@stust.edu.tw / mailto:c12378978@gmail.com
-% Version: 0.6
+% Contact: mailto:MA830213@stust.edu.tw / mailto:coreyfu088@gmail.com
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{stust-thesis}[2020/12/16 Thesis template for Southern Taiwan University of Science and Technology]
@@ -24,8 +23,9 @@
 \RequirePackage{stackengine}
 \RequirePackage{multirow}
 \RequirePackage{xstring}
-%% You have to download this packge exclusively to 
-%% eg. /usr/share/texlive/texmf-dist/tex/latex/
+%% You don't have to download this packge exclusively to 
+%% eg. /usr/share/texlive/texmf-dist/tex/latex/ ,
+%% since it's already in ./texmf/tex/latex .
 \RequirePackage{xCJKnumb} 
 
 % Remove headers in book class
